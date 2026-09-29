@@ -1,0 +1,11 @@
+{
+  "appId": "com.focosylay.ritmo",
+  "appName": "Ritmo",
+  "webDir": "dist",
+  "backgroundColor": "#191c1b",
+  "server": { "androidScheme": "https", "hostname": "localhost" },
+  "android": { "allowMixedContent": false, "webContentsDebuggingEnabled": false },
+  "plugins": {
+    "StatusBar": { "style": "DARK", "backgroundColor": "#191c1b" }
+  }
+}

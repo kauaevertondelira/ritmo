@@ -2,15 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f6f5f1">
   <meta name="description" content="Seu espaço para organizar tarefas, cultivar hábitos e cuidar da sua rotina.">
   <title>Ritmo — Seu dia, no seu ritmo</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Ritmo">
+  <script src="./theme.js"></script>
   <link rel="stylesheet" href="./editorial.css">
+  <link rel="stylesheet" href="./dark.css">
   <script src="./vendor/gsap.min.js" defer></script>
   <script src="./motion.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./install.js" defer></script>
+  <script type="module" src="./vendor/native.js"></script>
   <script type="module" src="./cloud.js"></script>
 </head>
 <body>
@@ -19,7 +28,7 @@
     <header class="topbar">
       <a class="brand" href="#inicio" aria-label="Ritmo, início">ritmo<span class="brand-dot">®</span></a>
       <nav id="navigation" aria-label="Navegação principal"></nav>
-      <div class="top-actions"><button class="account-button" data-action="settings" aria-label="Abrir meu espaço"><span class="profile"><strong>Meu espaço</strong><small>Conta</small></span><span class="avatar small">V</span></button></div>
+      <div class="top-actions"><button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Alternar tema"><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/></svg><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></button><button class="account-button" data-action="settings" aria-label="Abrir meu espaço"><span class="profile"><strong>Meu espaço</strong><small>Conta</small></span><span class="avatar small">V</span></button></div>
       <span id="breadcrumb" hidden>Visão geral</span>
     </header>
     <main id="main" tabindex="-1"></main>

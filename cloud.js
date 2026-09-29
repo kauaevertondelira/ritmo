@@ -1,7 +1,7 @@
 import { firebaseConfig } from './firebase-config.js';
 
 // Firebase SDK modular, versão fixa. Nenhuma chave administrativa no cliente.
-const sdk = 'https://www.gstatic.com/firebasejs/12.19.0/';
+
 const messages = {
   'auth/invalid-credential':'E-mail ou senha incorretos.',
   'auth/invalid-login-credentials':'E-mail ou senha incorretos.',
@@ -22,14 +22,14 @@ const messages = {
 function friendly(error){const result=new Error(messages[error.code]||`Não foi possível concluir a operação no Firebase (${error.code||'conexão indisponível'}).`);result.code=error.code;return result;}
 function emit(name){window.dispatchEvent(new Event(name));}
 try {
-  const [appSDK, authSDK, dbSDK] = await Promise.all([
-    import(sdk+'firebase-app.js'), import(sdk+'firebase-auth.js'), import(sdk+'firebase-database.js')
-  ]);
+  const {appSDK, authSDK, dbSDK} = await import('./vendor/firebase.js');
   const app = appSDK.initializeApp(firebaseConfig);
   const auth = authSDK.getAuth(app);
   const db = dbSDK.getDatabase(app);
-  // Session persistence avoids leaving an account open after the tab is closed.
-  await authSDK.setPersistence(auth, authSDK.browserSessionPersistence);
+  // Installed apps retain the session across launches; ordinary browser tabs
+  // retain the existing session-only behavior. Logout clears either mode.
+  const installed=matchMedia('(display-mode: standalone)').matches||window.Capacitor?.isNativePlatform?.();
+  await authSDK.setPersistence(auth,installed?authSDK.indexedDBLocalPersistence:authSDK.browserSessionPersistence);
   let stopListening=null, cached=null, listenerError=null, manualAuth=false, connected=false;
   const workspaceRef=()=>{if(!auth.currentUser)throw new Error('Entre na sua conta para continuar.');return dbSDK.ref(db,`ritmo/users/${auth.currentUser.uid}/workspace`);};
   const decode=value=>value?{data:JSON.parse(value.payload),revision:value.revision}:null;
