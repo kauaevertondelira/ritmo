@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="Seu espaço para organizar tarefas, cultivar hábitos e cuidar da sua rotina.">
+  <title>Ritmo — Seu dia, no seu ritmo</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./editorial.css">
+  <script src="./vendor/gsap.min.js" defer></script>
+  <script src="./motion.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script type="module" src="./cloud.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+  <div class="workspace">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Ritmo, início">ritmo<span class="brand-dot">®</span></a>
+      <nav id="navigation" aria-label="Navegação principal"></nav>
+      <div class="top-actions"><button class="account-button" data-action="settings" aria-label="Abrir meu espaço"><span class="profile"><strong>Meu espaço</strong><small>Conta</small></span><span class="avatar small">V</span></button></div>
+      <span id="breadcrumb" hidden>Visão geral</span>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <footer><a class="footer-brand" href="#inicio">ritmo.</a><span>Um espaço para a vida acontecer.</span><span class="local-status">Demonstração</span></footer>
+  </div>
+  <dialog id="dialog" aria-labelledby="dialog-title"></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
